@@ -19,6 +19,7 @@ public class MYSQLDatabase {
         this.password = password;
         connection = null;
         driverLoaded = false;
+        loadDriver();
     }
     public void connect(){
         try {
@@ -41,7 +42,7 @@ public class MYSQLDatabase {
         }
         return statement;
     }
-    public static void loadDriver(){
+    private static void loadDriver(){
         if(driverLoaded != true){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");

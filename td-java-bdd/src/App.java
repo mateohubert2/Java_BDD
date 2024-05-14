@@ -7,7 +7,6 @@ import java.sql.SQLException;
 public class App {
     public static void main(String[] args) throws Exception {
         MYSQLDatabase mysql = new MYSQLDatabase("localhost", 3307, "poly_sports", "mateo", "esirem");
-        mysql.loadDriver();
         mysql.connect();
         //mysql.createStatement();
     }
