@@ -26,4 +26,20 @@ public class SportsDAO {
         }
         return sports;
     }
+    public Sport findById(int sport){
+        Statement myStatement = database.createStatement();
+        Sport sport_voulu = null;
+        try {
+            ResultSet myResults = myStatement.executeQuery("SELECT `name`, `id`, `required_participants` FROM `sport` WHERE `id` = "+sport+";");
+            while(myResults.next()){
+                int id = myResults.getInt("id");
+                String name = myResults.getString("name");
+                int required_participants = myResults.getInt("required_participants");
+                sport_voulu = new Sport(id, name, required_participants);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return sport_voulu;
+    }
 }

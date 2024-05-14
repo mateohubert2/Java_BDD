@@ -28,7 +28,7 @@ public class MYSQLDatabase {
                 user ,
                 password
                 );
-            connection.createStatement();
+            //connection.createStatement();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
