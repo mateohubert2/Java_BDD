@@ -6,8 +6,7 @@ import java.sql.SQLException;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        MYSQLDatabase mysql = new MYSQLDatabase("localhost", 3307, "poly_sports", "mateo", "esirem");
-        mysql.connect();
-        //mysql.createStatement();
+        PolySportsDatabase poly_sport = PolySportsDatabase.getInstance();
+        poly_sport.connect();
     }
 }
