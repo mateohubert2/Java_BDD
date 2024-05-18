@@ -1,5 +1,6 @@
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +14,9 @@ public class App {
         ArrayList<Sport> sports = dao.findAll();
         Sport sport = dao.findById(1);
         Sport sport_inexistant = dao.findById(15);
+        Scanner myScanner = new Scanner(System.in);
+        String input = myScanner.nextLine();
+        ArrayList<Sport> sports_name = dao.findByName(input);
         for(int i = 0; i < sports.size(); i++){
             System.out.println("Pour le sport: " + sports.get(i).getName() + " il faut: " + sports.get(i).getRequiredParticipants() + " participants et c'est le sport ayant pour id: " + sports.get(i).getId());
         }
@@ -22,6 +26,9 @@ public class App {
             System.out.println("Pour le sport: " + sport_inexistant.getName() + " il faut: " + sport_inexistant.getRequiredParticipants() + " participants et c'est le sport ayant pour id: " + sport_inexistant.getId());
         } catch (Exception e) {
             System.err.println("Le sport demandé n'existe pas");
+        }
+        for(int i = 0; i < sports_name.size(); i++){
+            System.out.println("Pour le sport: " + sports_name.get(i).getName() + " il faut: " + sports_name.get(i).getRequiredParticipants() + " participants et c'est le sport ayant pour id: " + sports_name.get(i).getId());
         }
     }
 }

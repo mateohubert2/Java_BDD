@@ -10,7 +10,7 @@ public class SportsDAO {
         this.database = database;
     }
     public ArrayList<Sport> findAll(){
-        ArrayList<Sport> sports = new ArrayList<>();
+        ArrayList<Sport> sports = new ArrayList<Sport>();
         Statement myStatement = database.createStatement();
         try {
             ResultSet myResults = myStatement.executeQuery("SELECT `name`, `id`, `required_participants` FROM `sport`;");
@@ -41,5 +41,22 @@ public class SportsDAO {
             System.err.println(e.getMessage());
         }
         return sport_voulu;
+    }
+    public ArrayList<Sport> findByName(String nom){
+        Statement myStatement = database.createStatement();
+        ArrayList<Sport> sports = new ArrayList<Sport>();
+        try {
+            ResultSet myResults = myStatement.executeQuery("SELECT * FROM `sport` WHERE `name` LIKE '%"+nom+"%';");
+            while(myResults.next()){
+                int id = myResults.getInt("id");
+                String name = myResults.getString("name");
+                int required_participants = myResults.getInt("required_participants");
+                Sport temp_sport = new Sport(id, name, required_participants);
+                sports.add(temp_sport);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return sports;
     }
 }
