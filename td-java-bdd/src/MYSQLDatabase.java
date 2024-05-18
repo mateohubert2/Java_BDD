@@ -1,7 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 public class MYSQLDatabase {
     private String host;
@@ -51,5 +53,14 @@ public class MYSQLDatabase {
             }
             driverLoaded = true;
         }
+    }
+    public PreparedStatement prepareStatement(String commande){
+        PreparedStatement mypreparedSatement = null;
+        try {
+            mypreparedSatement = this.connection.prepareStatement(commande);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return mypreparedSatement;
     }
 }
